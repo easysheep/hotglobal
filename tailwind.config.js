@@ -15,4 +15,12 @@ module.exports = {
     },
   },
   plugins: [],
+  theme: {
+    extend: {
+      colors: {
+        purple1: 'rgb(162, 107, 206)',
+        green1:'rgb(40 228 138)',
+      }
+    }
+  }
 };
