@@ -40,16 +40,16 @@ const Browse = () => {
   const endIndex = Math.min(startIndex + 10, allposts.length);
 
   const categories = [
-    { title: "Food", imageUrl: "/pizza.png" },
-    { title: "Travel", imageUrl: "/travel.png" },
-    { title: "Fashion", imageUrl: "/fashion.png" },
-    { title: "Technology", imageUrl: "/tech.png" },
-    { title: "Health & Fitness", imageUrl: "/health.png" },
-    { title: "Institutes", imageUrl: "/education.png" },
-    { title: "Sports", imageUrl: "/sports.png" },
-    { title: "Books", imageUrl: "/books.png" },
-    { title: "News", imageUrl: "/music.png" },
-    { title: "Entertainment", imageUrl: "/movies.png" },
+    { title: "Food", imageUrl: "/pizza.jpg"},
+    { title: "Travel", imageUrl: "/travel.jpg"},
+    { title: "Fashion", imageUrl: "/fashion.jpg"},
+    { title: "Technology", imageUrl: "/tech.jpg"},
+    { title: "Health & Fitness", imageUrl: "/health.jpg"},
+    { title: "Institutes", imageUrl: "/education.jpg"},
+    { title: "Sports", imageUrl: "/sports.jpg"},
+    { title: "Books", imageUrl: "/books.jpg"},
+    { title: "News", imageUrl: "/music.jpg"},
+    { title: "Entertainment", imageUrl: "/movies.jpg"},
   ];
 
   
