@@ -33,150 +33,52 @@ const BlogPage = () => {
     setShowPosts(!showPosts);
   };
 
-  // const handlefollow = async () => {
-  //   if (logedin) {
-  //     setFollowed(!followed);
-  //     try {
-  //       const postData = {
-  //         title: title,
-  //         followers: followers,
-  //       };
 
-  //       if (!followed) {
-  //         // If already followed, find the key of the followed page and remove it
-  //         const followedPagesRef = dbRef(
-  //           db,
-  //           `users/${currentUser.uid}/followedpages`
-  //         );
-  //         const snapshot = await get(followedPagesRef);
-
-  //         if (snapshot.exists()) {
-  //           let keyToDelete = null;
-  //           snapshot.forEach((childSnapshot) => {
-  //             const childData = childSnapshot.val();
-  //             if (
-  //               childData.title === title &&
-  //               childData.followers === followers
-  //             ) {
-  //               keyToDelete = childSnapshot.key;
-  //             }
-  //           });
-
-  //           if (keyToDelete) {
-  //             const updates = {};
-  //             updates[`users/${currentUser.uid}/followedpages/${keyToDelete}`] =
-  //               null;
-  //             await update(dbRef(db), updates);
-  //             toast.success("Unfollowed Successfully", {
-  //               position: "top-center",
-  //               autoClose: 1500,
-  //               hideProgressBar: false,
-  //               closeOnClick: true,
-  //               pauseOnHover: true,
-  //               draggable: true,
-  //               progress: undefined,
-  //               theme: "dark",
-  //               transition: Bounce,
-  //             });
-  //           } else {
-  //             console.error("Page not found in followed pages");
-  //           }
-  //         }
-  //       } else {
-  //         // If not followed, add the new postData
-  //         const newFollowedPageKey = push(
-  //           child(dbRef(db), `users/${currentUser.uid}/followedpages`)
-  //         ).key;
-  //         const updates = {};
-  //         updates[
-  //           `users/${currentUser.uid}/followedpages/` + newFollowedPageKey
-  //         ] = postData;
-
-  //         await update(dbRef(db), updates);
-  //         toast.success("Followed Successfully", {
-  //           position: "top-center",
-  //           autoClose: 1500,
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //           theme: "dark",
-  //           transition: Bounce,
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.error("Error following/unfollowing the page: ", error);
-  //       toast.error("Error following/unfollowing the page", {
-  //         position: "top-center",
-  //         autoClose: 1500,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "dark",
-  //         transition: Bounce,
-  //       });
-  //     }
-  //   } else {
-  //     console.log("Please log in.");
-  //     toast.warn("Login To Follow", {
-  //       position: "top-center",
-  //       autoClose: 1500,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "dark",
-  //       transition: Bounce,
-  //     });
-  //   }
-  // };
 
   useEffect(() => {
-    if (currentUser) {
-      console.log("Checking if the page is already followed");
-      const checkIfFollowed = async () => {
+    const checkIfFollowed = async () => {
+      console.log("use effect ran");
+      if (currentUser) {
         try {
           const followedPagesRef = dbRef(
             db,
             `users/${currentUser.uid}/followedpages`
           );
           const snapshot = await get(followedPagesRef);
-          console.log("Fetched followed pages snapshot: ", snapshot);
-
           if (snapshot.exists()) {
-            let isFollowed = false;
+            let keyToDelete = null;
             snapshot.forEach((childSnapshot) => {
               const childData = childSnapshot.val();
               if (
                 childData.title === title &&
                 childData.followers === followers
               ) {
-                isFollowed = true;
+                keyToDelete = childSnapshot.key;
+                console.log("found");
               }
             });
-
-            console.log("Is followed: ", isFollowed);
-            setFollowed(isFollowed);
-          } else {
-            console.log("No followed pages found");
+            
+            if (keyToDelete) {
+              setFollowed(true);
+              console.log("follwing is true");
+            }
+            else {
+              setFollowed(false);
+              console.log("follwing is false");
+            }
           }
         } catch (error) {
           console.error("Error checking followed pages: ", error);
         }
-      };
-
-      checkIfFollowed();
-    }
-  }, [currentUser, title, followers]);
-
+      }
+    };
+  
+    checkIfFollowed();
+  }, []);
+  
   const handlefollow = async () => {
-    console.log("Handle follow button clicked");
     if (logedin) {
-      console.log("User is logged in");
+      setFollowed(!followed);
       try {
         const postData = {
           title: title,
@@ -184,13 +86,12 @@ const BlogPage = () => {
         };
 
         if (followed) {
-          console.log("Already followed, unfollowing now");
+          // If already followed, find the key of the followed page and remove it
           const followedPagesRef = dbRef(
             db,
             `users/${currentUser.uid}/followedpages`
           );
           const snapshot = await get(followedPagesRef);
-          console.log("Fetched followed pages snapshot: ", snapshot);
 
           if (snapshot.exists()) {
             let keyToDelete = null;
@@ -205,13 +106,10 @@ const BlogPage = () => {
             });
 
             if (keyToDelete) {
-              console.log("Key to delete: ", keyToDelete);
               const updates = {};
               updates[`users/${currentUser.uid}/followedpages/${keyToDelete}`] =
                 null;
               await update(dbRef(db), updates);
-              console.log("Unfollowed successfully");
-              setFollowed(false);
               toast.success("Unfollowed Successfully", {
                 position: "top-center",
                 autoClose: 1500,
@@ -228,7 +126,7 @@ const BlogPage = () => {
             }
           }
         } else {
-          console.log("Not followed, following now");
+          // If not followed, add the new postData
           const newFollowedPageKey = push(
             child(dbRef(db), `users/${currentUser.uid}/followedpages`)
           ).key;
@@ -238,8 +136,6 @@ const BlogPage = () => {
           ] = postData;
 
           await update(dbRef(db), updates);
-          console.log("Followed successfully");
-          setFollowed(true);
           toast.success("Followed Successfully", {
             position: "top-center",
             autoClose: 1500,
@@ -267,7 +163,7 @@ const BlogPage = () => {
         });
       }
     } else {
-      console.log("User not logged in");
+      console.log("Please log in.");
       toast.warn("Login To Follow", {
         position: "top-center",
         autoClose: 1500,
@@ -353,8 +249,8 @@ const BlogPage = () => {
             className="bg-purple1 py-1 px-2 flex font-roboto"
             onClick={handlefollow}
           >
-            {!followed ? "Follow" : `Following ${" "}`}
-            {!followed && <TiTick size={25} />}
+            {followed ? "Unfollow" : "Follow"}
+            {/* {!followed && <TiTick size={25} />} */}
           </button>
         </div>
       </div>
