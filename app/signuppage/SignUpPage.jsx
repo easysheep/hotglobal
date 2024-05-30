@@ -85,8 +85,8 @@ const SignUpPage = () => {
 
               <div className="at0">
                 <div className=" pb-3">
-                  <div className="">
-                    <label className="font-bold text-white" for="amountInput">
+                  <div className="font-roboto">
+                    <label className="font-bold text-white font-roboto" for="amountInput">
                       Email:
                     </label>
                     <div className="text-black">
@@ -102,8 +102,8 @@ const SignUpPage = () => {
                 </div>
 
                 <div className="pb-3">
-                  <div className="text-white">
-                    <label className="font-bold" for="amountInput">
+                  <div className="text-white font-roboto">
+                    <label className="font-bold font-roboto" for="amountInput">
                       Enter Password:
                     </label>
                     <div className="text-black">
@@ -119,7 +119,7 @@ const SignUpPage = () => {
                 </div>
               </div>
               <div className="">
-                <button className="mt-4 bg-white px-2 py-1 shadow-2xl rounded-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-200">
+                <button className="mt-4 font-roboto bg-white px-2 py-1 shadow-2xl rounded-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-200">
                   SignUp
                 </button>
               </div>

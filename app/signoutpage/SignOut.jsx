@@ -45,17 +45,17 @@ const Signout = () => {
       <div className="flex items-center justify-center top-24 relative w-100 h-full bg-purple1 ">
         <div className=" px-4 py-4 rounded-xl w-11/12 h-72 flex">
         <div className="left-panel  w-1/2 flex justify-center items-center">
-          <div className="text-white font-bold  text-8xl flex justify-center">
+          <div className="text-white font-bold  text-8xl flex justify-center font-monte">
             SignOut.
           </div>
         </div>
           <div className="othcont w-1/2 font-bold text-white justify-center flex flex-col">
-            <p className="text-4xl">Are you sure ?</p>
+            <p className="text-4xl font-roboto">Are you sure ?</p>
             <div className="twob1 flex gap-4 text-2xl mt-2">
-              <button className="signout_buttons" onClick={logoutHandler}>
+              <button className="signout_buttons font-roboto" onClick={logoutHandler}>
                 Yes
               </button>
-              <button className="signout_buttons" onClick={browsingHandler}>
+              <button className="signout_buttons font-roboto" onClick={browsingHandler}>
                 No
               </button>
             </div>

@@ -28,8 +28,8 @@ const Navbar = () => {
         </div>
       )}
 
-      <div className="font-bold text-2xl flex-1 items-center justify-center flex cursor-pointer">
-        <div className="text-3xl text-purple1">X</div>
+      <div className="font-bold text-2xl flex-1 items-center justify-center flex cursor-pointer gap-1">
+        <div className="text-3xl font-poet text-purple1">X</div>
         <div className="text-xl">ploroScope</div>
       </div>
 

@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation"; // Import useRouter hook
 
 const Browse = () => {
-  const { allposts,pages } = useAuth();
+  const { allposts, pages } = useAuth();
 
   const [startIndex, setStartIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
@@ -40,19 +40,17 @@ const Browse = () => {
   const endIndex = Math.min(startIndex + 10, allposts.length);
 
   const categories = [
-    { title: "Food", imageUrl: "/pizza.jpg"},
-    { title: "Travel", imageUrl: "/travel.jpg"},
-    { title: "Fashion", imageUrl: "/fashion.jpg"},
-    { title: "Technology", imageUrl: "/tech.jpg"},
-    { title: "Health & Fitness", imageUrl: "/health.jpg"},
-    { title: "Institutes", imageUrl: "/education.jpg"},
-    { title: "Sports", imageUrl: "/sports.jpg"},
-    { title: "Books", imageUrl: "/books.jpg"},
-    { title: "News", imageUrl: "/music.jpg"},
-    { title: "Entertainment", imageUrl: "/movies.jpg"},
+    { title: "Food", imageUrl: "/pizza.jpg" },
+    { title: "Travel", imageUrl: "/travel.jpg" },
+    { title: "Fashion", imageUrl: "/fashion.jpg" },
+    { title: "Technology", imageUrl: "/tech.jpg" },
+    { title: "Health & Fitness", imageUrl: "/health.jpg" },
+    { title: "Institutes", imageUrl: "/education.jpg" },
+    { title: "Sports", imageUrl: "/sports.jpg" },
+    { title: "Books", imageUrl: "/books.jpg" },
+    { title: "News", imageUrl: "/music.jpg" },
+    { title: "Entertainment", imageUrl: "/movies.jpg" },
   ];
-
-  
 
   const convertTimeToMilliseconds = (durationString) => {
     const durationUnitMap = {
@@ -66,7 +64,7 @@ const Browse = () => {
     return durationValue * durationUnitMap[durationUnit]; // Convert to milliseconds
   };
 
-  allposts.sort((a, b) => {
+  allposts.sort((b, a) => {
     const timeA = convertTimeToMilliseconds(a.time);
     const timeB = convertTimeToMilliseconds(b.time);
     return timeB - timeA;
@@ -79,8 +77,11 @@ const Browse = () => {
     downvotes: post.downvotes,
     desc: post.desc,
     time: post.time,
+    content: post.content,
     postedOn: post.postedOn,
     postedBy: post.postedBy,
+    uID: post?.uID,
+    
   }));
 
   const router = useRouter(); // Initialize useRouter hook
@@ -119,7 +120,7 @@ const Browse = () => {
       <div className="pt-10 pb-10">
         <div className="flex justify-between">
           <div className="text-6xl font-bold">Browse.</div>
-          <div className="flex items-end" id="section1">
+          <div className="flex items-end  font-raleway" id="section1">
             Browse your favourite categories and pages
           </div>
         </div>
@@ -150,7 +151,7 @@ const Browse = () => {
 
         <div className="two-box flex gap-2 h-96" id="section2">
           <div className="left w-3/4 p-2">
-            <div className="text-3xl font-bold">Recent Posts</div>
+            <div className="text-4xl font-bold font-monte">Recent Posts</div>
             <div className="grid grid-row-8 gap-8 pt-4 pb-6">
               {recentposts.map((data, index) => {
                 return <RecentPost key={index} {...data} />;
@@ -183,7 +184,9 @@ const Browse = () => {
             </div>
           </div>
           <div className="right w-1/4 p-2">
-            <div className="text-3xl font-bold pb-3">Popular Pages</div>
+            <div className="text-4xl font-monte font-bold pb-4">
+              Popular Pages
+            </div>
             <div className="gap-3 flex flex-col">
               {pages.map((data, index) => (
                 <Link
@@ -198,7 +201,7 @@ const Browse = () => {
                   key={index}
                 >
                   <div className="text rounded-lg bg-gray-100 py-2 px-2 cursor-pointer flex justify-between shadow-md transition-all duration-300 hover:bg-purple1 hover:text-white">
-                    <span className="text-base">{data.title}</span>
+                    <span className="text-base font-monte">{data.title}</span>
                     <span className="text-xs flex items-center">
                       {data.followers}+
                     </span>

@@ -19,10 +19,10 @@ const FeaturedCards = () => {
   }));
 
   return (
-    <div className="pt-10 pb-10">
+    <div className="pt-4 pb-10 ">
       <div className="flex justify-between">
-        <div className="text-6xl pb-4 font-bold">Hot Picks</div>
-        <div className="flex items-center">
+        <div className="text-6xl pb-4  font-bold">Hot Picks.</div>
+        <div className="flex items-center font-raleway">
           See the latest trending hot topics
         </div>
       </div>

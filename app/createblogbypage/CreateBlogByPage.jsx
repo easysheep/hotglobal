@@ -198,8 +198,9 @@ const CreateBlogByPage = () => {
   };
 
   return (
-    <div className="pt-5">
-      <div className="font-bold text-5xl pt-8 pb-2">Create Post.</div>
+    <div className="">
+      <div className="h-1 bg-slate-800  mb-3"></div>
+      <div className="font-bold text-5xl pt-8 pb-2 font-monte">Create Post.</div>
       <form
         className="border-4 min-h-64 py-4 px-3 flex flex-row gap-3"
         onSubmit={(e) => e.preventDefault()} // Prevent default form submission
@@ -209,10 +210,10 @@ const CreateBlogByPage = () => {
             htmlFor="file-upload"
             className="custom-file-upload flex flex-col cursor-pointer"
           >
-            <span className="text-8xl text-gray-400 flex justify-center">
+            <span className="text-8xl text-gray-400 flex justify-center font-roboto">
               +
             </span>
-            <span className="text-xl text-gray-400 font-bold">Add Image</span>
+            <span className="text-xl text-gray-400 font-bold font-roboto">Add Image</span>
           </label>
           <input
             id="file-upload"
@@ -224,13 +225,13 @@ const CreateBlogByPage = () => {
         <div className="w-9/12 flex flex-col">
           <input
             type="text"
-            className="text-3xl border-4 font-bold h-16 py-1 w-80 px-3"
+            className="text-3xl border-4 font-bold h-16 py-1 w-80 px-3 font-roboto"
             placeholder="Add Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <textarea
-            className="border-4 font-bold min-h-80 mt-2 p-1 px-3 flex"
+            className="border-4 font-bold min-h-32 mt-2 p-1 px-3 flex font-roboto"
             placeholder="Write Content"
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
@@ -238,11 +239,11 @@ const CreateBlogByPage = () => {
           {!postedOn ? (
             <input
               type="text"
-              className="text-xl border-4 font-bold h-10 py-1 w-40 px-3 mt-2"
+              className="text-xl border-4 font-bold h-10 py-1 w-40 px-3 mt-2 font-roboto"
               placeholder="Post On"
             />
           ) : (
-            <div className="text-xl border-4 h-10 py-1 w-fit px-3 mt-2">
+            <div className="text-xl border-4 h-10 py-1 w-fit px-3 mt-2 font-roboto">
               {postedOn}
             </div>
           )}
@@ -251,14 +252,14 @@ const CreateBlogByPage = () => {
             <div className="flex gap-3 text-white pt-9">
               <button
                 type="button"
-                className="bg-purple1 py-1 px-2"
+                className="bg-purple1 py-1 px-2 font-roboto"
                 onClick={handlePostAnonymously}
               >
                 Post Anonymously
               </button>
               <button
                 type="button"
-                className="bg-purple1 py-1 px-2"
+                className="bg-purple1 py-1 px-2 font-roboto"
                 onClick={handlePostUser}
               >
                 Post As User
@@ -270,7 +271,7 @@ const CreateBlogByPage = () => {
                   <input
                     type="text"
                     placeholder="Category"
-                    className="border-2 border-gray-500 px-2 text-black"
+                    className="border-2 border-gray-500 px-2 text-black font-roboto"
                     value={categoryInput}
                     onChange={handleCategoryInputChange}
                     onKeyDown={handleCategoryInputKeyPress}
@@ -279,7 +280,7 @@ const CreateBlogByPage = () => {
               )}
               <button
                 type="button"
-                className="bg-purple1 color-white py-1 px-2"
+                className="bg-purple1 color-white py-1 px-2 font-roboto"
                 onClick={toggleCategoryInput}
                 title={categories.length > 0 ? categories.join(", ") : ""}
               >

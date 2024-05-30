@@ -98,7 +98,7 @@ const LoginPage = () => {
     <div className="flex items-center justify-center top-24 relative w-100 h-full bg-purple1  ">
       <div className="  px-4 py-4 rounded-xl w-11/12 h-72 flex">
         <div className="left-panel  w-1/2 flex justify-center items-center">
-          <div className="text-white font-bold  text-8xl flex justify-center">
+          <div className="text-white font-bold  text-8xl flex justify-center font-raleway">
             Login.
           </div>
         </div>
@@ -108,16 +108,16 @@ const LoginPage = () => {
               <br />
               <div className="at0">
                 <div className="pb-3">
-                  <div className="cp1">
+                  <div className="cp1 font-roboto">
                     <label
-                      className="font-bold text-white"
+                      className="font-bold text-white font-roboto"
                       htmlFor="emailInput"
                     >
                       Email:
                     </label>
                     <div className="amnt">
                       <input
-                        className="px-1"
+                        className="px-1 font-roboto"
                         name="email"
                         type="email"
                         placeholder="123@x.com"
@@ -127,8 +127,8 @@ const LoginPage = () => {
                   </div>
                 </div>
                 <div className="pb-3">
-                  <div className="text-white">
-                    <label className="font-bold" htmlFor="passwordInput">
+                  <div className="text-white font-roboto">
+                    <label className="font-bold font-roboto" htmlFor="passwordInput">
                       Enter Password:
                     </label>
                     <div className="text-black">
@@ -146,7 +146,7 @@ const LoginPage = () => {
               <br />
               <div className="btnbtnc ">
                 <button
-                  className="btnbtn bg-white px-2 py-1 shadow-2xl rounded-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-200"
+                  className="btnbtn font-roboto bg-white px-2 py-1 shadow-2xl rounded-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-200"
                   type="submit"
                 >
                   Login

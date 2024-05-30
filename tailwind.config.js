@@ -21,6 +21,13 @@ module.exports = {
         purple1: 'rgb(162, 107, 206)',
         green1:'rgb(40 228 138)',
       }
-    }
+    },
+    fontFamily: {
+      monte: ["Montserrat", "sans-serif"],
+      poet:["Poetsen One", "sans-serif"],
+      raleway:["Raleway", "sans-serif"],
+      roboto:["Roboto Slab", "serif"],
+    },
+
   }
 };
