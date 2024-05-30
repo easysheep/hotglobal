@@ -27,7 +27,7 @@ const BlogPage = () => {
   const followers = searchParams.get("followers");
   const imageUrl = searchParams.get("imageUrl");
   const [showPosts, setShowPosts] = useState(true);
-  const [followed, setFollowed] = useState(true);
+  const [followed, setFollowed] = useState(false);
   const router = useRouter();
   const togglePostsVisibility = () => {
     setShowPosts(!showPosts);
