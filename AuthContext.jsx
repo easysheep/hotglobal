@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
   const [logedin, setlogedin] = useState(false);
   const [allposts, setallposts] = useState([]);
   const [pages, setpages] = useState([]);
-  const [username, setUsername] = useState("");
 
   useEffect(() => {
     localStorage.setItem("logedin", JSON.stringify(logedin));
@@ -71,9 +70,7 @@ export const AuthProvider = ({ children }) => {
         allposts,
         setallposts,
         pages,
-        setpages,
-        username,
-        setUsername,
+        setpages
       }}
     >
       {children}

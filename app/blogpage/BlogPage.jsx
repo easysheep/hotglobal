@@ -83,6 +83,7 @@ const BlogPage = () => {
         const postData = {
           title: title,
           followers: followers,
+          imageUrl: imageUrl,
         };
 
         if (followed) {
@@ -204,7 +205,7 @@ const BlogPage = () => {
     console.log(filteredPosts);
     console.log(followers);
   }, [allposts, title]);
-  const formattedImageUrl = imageUrl.startsWith("/")
+  const formattedImageUrl = imageUrl?.startsWith("/")
     ? imageUrl
     : `/${imageUrl}`;
 

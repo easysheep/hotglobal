@@ -65,18 +65,20 @@ const CategoryPage = () => {
         <div className="font-black text-purple1 font-roboto">{category}</div>
       </div>
       <div className="pt-4 pb-8 flex flex-col gap-4">
-        {/* {categoryPosts.map((data, index) => {
-          return <RecentPost key={index} {...data} />;
-        })} */}
-
-        <div className="flex mt-20 gap-4">
-          <div className="font-monte text-8xl font-bold">Nothing to</div>
-          <div className="font-monte text-4xl font-bold text-purple1 flex items-end mb-3">show</div>
-          <div className="font-monte text-8xl font-bold">here</div>
-        </div>
+        {categoryPosts.length > 0 ? (
+          categoryPosts.map((data, index) => (
+            <RecentPost key={index} {...data} />
+          ))
+        ) : (
+          <div className="flex mt-20 gap-4">
+            <div className="font-monte text-8xl font-bold">Nothing to</div>
+            <div className="font-monte text-4xl font-bold text-purple1 flex items-end mb-3">
+              show
+            </div>
+            <div className="font-monte text-8xl font-bold">here</div>
+          </div>
+        )}
       </div>
-
-      {/* <div class=" h-42 px-3 py-1 w-auto rounded-3xl text-white text-6xl bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ...">Travel</div> */}
     </div>
   );
 };

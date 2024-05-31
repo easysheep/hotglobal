@@ -11,6 +11,7 @@ import {
   child,
   push,
   update,
+  get,
 } from "firebase/database";
 import {
   getStorage,
@@ -20,7 +21,7 @@ import {
 } from "firebase/storage";
 
 const CreateBlogByPage = () => {
-  const { logedin, username, currentUser } = useAuth();
+  const { logedin, currentUser } = useAuth();
   const searchParams = useSearchParams();
   const postedOn = searchParams.get("postedOn");
   const router = useRouter();
@@ -29,12 +30,45 @@ const CreateBlogByPage = () => {
   const [showCategoryInput, setShowCategoryInput] = useState(false);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    console.log("useEffect triggered with currentUser:", currentUser);
+
+    if (currentUser) {
+      console.log("Current user exists:", currentUser.uid);
+
+      const db = getDatabase();
+      const userRef = dbRef(db, `users/${currentUser.uid}`);
+
+      // Fetch user data
+      get(userRef)
+        .then((snapshot) => {
+          console.log("Fetching user data...");
+
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            console.log("User data fetched:", userData);
+
+            setUsername(userData.username || "");
+            console.log("Username set to:", userData.username || "");
+          } else {
+            console.log("No user data found.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+        });
+    } else {
+      console.log("No current user.");
+    }
+  }, [currentUser]);
 
   useEffect(() => {
     console.log("username is " + username);
-    console.log(currentUser?.email);
-  }, [username, currentUser?.email]);
+  }, [username]);
 
   const writeNewPost = (
     uid,
@@ -44,7 +78,8 @@ const CreateBlogByPage = () => {
     postedOn,
     title,
     category,
-    imageUrl
+    imageUrl,
+    content
   ) => {
     const db = getDatabase();
 
@@ -59,6 +94,7 @@ const CreateBlogByPage = () => {
       time: time,
       title: title,
       imageUrl: imageUrl,
+      content: content,
     };
 
     // Get a key for a new Post.
@@ -67,6 +103,7 @@ const CreateBlogByPage = () => {
     // Write the new post's data simultaneously in the posts list and the user's post list.
     const updates = {};
     updates["/allposts/" + newPostKey] = postData;
+    updates[`users/${currentUser.uid}/myposts/` + newPostKey] = postData;
 
     return update(dbRef(db), updates);
   };
@@ -105,7 +142,8 @@ const CreateBlogByPage = () => {
           postedOn,
           title,
           category,
-          downloadURL
+          downloadURL,
+          content
         );
       })
       .then(() => {
@@ -199,22 +237,34 @@ const CreateBlogByPage = () => {
 
   return (
     <div className="">
-      <div className="h-1 bg-slate-800  mb-3"></div>
-      <div className="font-bold text-5xl pt-8 pb-2 font-monte">Create Post.</div>
+      <div className="h-1 bg-slate-800 mb-3"></div>
+      <div className="font-bold text-5xl pt-8 pb-2 font-monte">
+        Create Post.
+      </div>
       <form
         className="border-4 min-h-64 py-4 px-3 flex flex-row gap-3"
         onSubmit={(e) => e.preventDefault()} // Prevent default form submission
       >
         <div className="imgbox border-4 w-3/12 flex justify-center items-center max-h-52">
-          <label
-            htmlFor="file-upload"
-            className="custom-file-upload flex flex-col cursor-pointer"
-          >
-            <span className="text-8xl text-gray-400 flex justify-center font-roboto">
-              +
-            </span>
-            <span className="text-xl text-gray-400 font-bold font-roboto">Add Image</span>
-          </label>
+          {imageFile ? (
+            <div className="flex flex-col items-center">
+              <span className="text-2xl text-gray-400 font-bold font-roboto">
+                Image Added
+              </span>
+            </div>
+          ) : (
+            <label
+              htmlFor="file-upload"
+              className="custom-file-upload flex flex-col cursor-pointer"
+            >
+              <span className="text-8xl text-gray-400 flex justify-center font-roboto">
+                +
+              </span>
+              <span className="text-xl text-gray-400 font-bold font-roboto">
+                Add Image
+              </span>
+            </label>
+          )}
           <input
             id="file-upload"
             type="file"
@@ -223,18 +273,28 @@ const CreateBlogByPage = () => {
           />
         </div>
         <div className="w-9/12 flex flex-col">
-          <input
-            type="text"
-            className="text-3xl border-4 font-bold h-16 py-1 w-80 px-3 font-roboto"
-            placeholder="Add Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <div className="flex gap-4">
+            <input
+              type="text"
+              className="text-3xl border-4 font-bold h-16 py-1 w-2/6 px-3 font-roboto"
+              placeholder="Add Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <input
+              type="text"
+              className="text-lg border-4 font-bold h-16 py-1 w-4/6 px-3 font-roboto"
+              placeholder="Add Description"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+            />
+          </div>
+
           <textarea
             className="border-4 font-bold min-h-32 mt-2 p-1 px-3 flex font-roboto"
-            placeholder="Write Content"
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
+            placeholder="Write content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           ></textarea>
           {!postedOn ? (
             <input
