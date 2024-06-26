@@ -70,13 +70,11 @@ const CategoryPage = () => {
             <RecentPost key={index} {...data} />
           ))
         ) : (
-          <div className="flex mt-20 gap-4">
-            <div className="font-monte text-8xl font-bold">Nothing to</div>
-            <div className="font-monte text-4xl font-bold text-purple1 flex items-end mb-3">
-              show
-            </div>
-            <div className="font-monte text-8xl font-bold">here</div>
-          </div>
+          <div className="flex mt-20 gap-4 flex-col xl:flex-row  xl:items-start  xl:text-left">
+          <div className="font-monte text-5xl xl:text-8xl font-bold">Nothing to</div>
+          <div className="font-monte text-2xl xl:text-4xl font-bold text-purple1  xl:mb-0">show</div>
+          <div className="font-monte text-5xl xl:text-8xl font-bold">here</div>
+        </div>
         )}
       </div>
     </div>

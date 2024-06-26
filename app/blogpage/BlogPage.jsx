@@ -33,8 +33,6 @@ const BlogPage = () => {
     setShowPosts(!showPosts);
   };
 
-
-
   useEffect(() => {
     const checkIfFollowed = async () => {
       console.log("use effect ran");
@@ -57,12 +55,11 @@ const BlogPage = () => {
                 console.log("found");
               }
             });
-            
+
             if (keyToDelete) {
               setFollowed(true);
               console.log("follwing is true");
-            }
-            else {
+            } else {
               setFollowed(false);
               console.log("follwing is false");
             }
@@ -72,10 +69,10 @@ const BlogPage = () => {
         }
       }
     };
-  
+
     checkIfFollowed();
   }, []);
-  
+
   const handlefollow = async () => {
     if (logedin) {
       setFollowed(!followed);
@@ -211,7 +208,7 @@ const BlogPage = () => {
 
   return (
     <div>
-      <div className="h-1 bg-slate-800  mb-3"></div>
+      <div className="h-1 bg-slate-800 mb-3"></div>
       <div className="leftcnt w-full h-60 relative py-3">
         <Image
           src={formattedImageUrl}
@@ -222,11 +219,13 @@ const BlogPage = () => {
         />
       </div>
 
-      <div className="flex justify-between">
-        <div className="font-bold text-8xl font-raleway">{title}.</div>
-        <div className="flex gap-1 items-center">
+      <div className="flex justify-between items-center">
+        <div className="font-bold text-4xl md:text-6xl lg:text-8xl font-raleway">
+          {title}.
+        </div>
+        <div className="flex flex-col xl:flex-row gap-1 items-center">
           <div className="font-bold text-purple1">{followers}</div>
-          <div className=" font-roboto">follow this page</div>
+          <div className="font-roboto">follow this page</div>
         </div>
       </div>
       <div className="flex gap-3 text-white pt-10 justify-between">
