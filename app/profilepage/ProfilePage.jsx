@@ -74,9 +74,7 @@ const ProfilePage = () => {
         });
     }
   }, [currentUser]);
-  
-  
-  
+
   const handleInputChange = (e) => {
     setUsername(e.target.value);
   };
@@ -133,15 +131,19 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="flex" style={{ height: "calc(100vh - 60px)" }}>
+    <div
+      className="flex flex-col xl:flex-row"
+      style={{ height: "calc(100vh - 60px)" }}
+    >
       {!profileCompleted && (
         <>
           <form
             onSubmit={handleSubmit}
-            className="w-1/2 bg-purple1 overflow-hidden flex justify-start items-center flex-col"
+            className="xl:w-1/2 w-full bg-purple1 overflow-hidden flex flex-col justify-start items-center"
+            style={{ minHeight: "50vh" }} // Increase form height
           >
             <div
-              className="cursor-pointer bg-white opacity-40 h-36 w-36 mt-12 shadow-2xl justify-center flex items-center flex-col"
+              className="cursor-pointer bg-white opacity-40 h-36 w-36 mt-12 shadow-2xl flex justify-center items-center flex-col"
               style={{ borderRadius: "50%" }}
             >
               <label
@@ -149,7 +151,7 @@ const ProfilePage = () => {
                 className="cursor-pointer flex flex-col"
               >
                 <span className="text-5xl flex justify-center">+</span>
-                <span className="">Add Profile</span>
+                <span>Add Profile</span>
               </label>
               <input
                 id="file-upload"
@@ -162,7 +164,7 @@ const ProfilePage = () => {
               type="text"
               value={username}
               onChange={handleInputChange}
-              className="cursor-pointer bg-white opacity-40 h-12 w-36 mt-12 shadow-2xl text-center justify-center flex items-center px-1 placeholder-gray-900"
+              className="cursor-pointer bg-white opacity-40 h-12 w-36 mt-12 shadow-2xl text-center flex justify-center items-center px-1 placeholder-gray-900"
               placeholder="Post As"
               style={{ "::placeholder": { color: "#61407C" } }}
               required
@@ -172,28 +174,34 @@ const ProfilePage = () => {
               className="px-4 py-2 mt-4 bg-purple1 text-white"
             >
               <div className="flex gap-1">
-                <div className="">Continue</div>
+                <div>Continue</div>
                 <div className="flex items-center">
                   <FaArrowRight />
                 </div>
               </div>
             </button>
           </form>
-          <div className="w-1/2 h-full pt-10 pl-4">
-            <div className="font-bold text-7xl">Complete profile</div>
-            <div className="font-bold text-7xl">to begin</div>
-            <div className="font-bold text-7xl">posting.</div>
+          <div className="xl:w-1/2 w-full xl:h-full h-auto pt-10 pl-4 flex flex-col items-center xl:items-start">
+            <div className="font-bold text-7xl text-center xl:text-left">
+              Complete profile
+            </div>
+            <div className="font-bold text-7xl text-center xl:text-left">
+              to begin
+            </div>
+            <div className="font-bold text-7xl text-center xl:text-left">
+              posting.
+            </div>
           </div>
         </>
       )}
       <div
-        className={`h-full pt-10 flex w-full ${
+        className={`h-full pt-10 flex w-full lg:flex-row flex-col ${
           profileCompleted
             ? "opacity-100 transition-opacity duration-500"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="leftcont w-1/2 h-full pt-2 flex flex-col">
+        <div className="leftcont lg:w-1/2 w-full lg:h-full h-auto pt-2 flex flex-col">
           <div className="font-bold text-7xl">See Your Posts</div>
           <div className="font-bold text-7xl">And Pages</div>
           <div className="font-bold text-7xl">You Follow.</div>
@@ -212,7 +220,7 @@ const ProfilePage = () => {
             </button>
           </div>
         </div>
-        <div className="rightcont w-1/2 h-full pt-5">
+        <div className="rightcont lg:w-1/2 w-full lg:h-full h-auto pt-5">
           <div className="gap-3 flex flex-col">
             {view === "pages" ? (
               pages.length > 0 ? (
@@ -220,7 +228,11 @@ const ProfilePage = () => {
                   <Link
                     href={{
                       pathname: "/blogpage",
-                      query: { title: data.title, followers: data.followers,imageUrl: data.imageUrl, },
+                      query: {
+                        title: data.title,
+                        followers: data.followers,
+                        imageUrl: data.imageUrl,
+                      },
                     }}
                     key={index}
                   >
@@ -243,8 +255,8 @@ const ProfilePage = () => {
             ) : myposts.length > 0 ? (
               myposts.map((data, index) => {
                 return <RecentPostProfilePage key={index} {...data} />;
-              }
-            ) ): (
+              })
+            ) : (
               <div className="font-bold text-purple1 text-6xl">
                 Nothing to show here
               </div>

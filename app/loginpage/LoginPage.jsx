@@ -3,7 +3,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebaseconfig";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { useAuth } from "../../AuthContext";
 import { toast } from "react-toastify";
 import { Bounce } from "react-toastify";
@@ -95,15 +94,15 @@ const LoginPage = () => {
     setPassword(event.target.value);
   };
   return (
-    <div className="flex items-center justify-center top-24 relative w-100 h-full bg-purple1  ">
-      <div className="  px-4 py-4 rounded-xl w-11/12 h-72 flex">
-        <div className="left-panel  w-1/2 flex justify-center items-center">
-          <div className="text-white font-bold  text-8xl flex justify-center font-raleway">
+    <div className="flex items-center justify-center top-24 relative w-full h-full bg-purple1">
+      <div className="px-4 py-4 rounded-xl w-11/12 h-auto flex flex-col md:flex-row">
+        <div className="left-panel w-full md:w-1/2 flex justify-center items-center">
+          <div className="text-white font-bold text-8xl flex justify-center font-raleway">
             Login.
           </div>
         </div>
-        <div className="overlay-box  w-1/2">
-          <div className="pays10 ">
+        <div className="overlay-box w-full md:w-1/2">
+          <div className="pays10">
             <form onSubmit={submitHandler}>
               <br />
               <div className="at0">
@@ -117,7 +116,7 @@ const LoginPage = () => {
                     </label>
                     <div className="amnt">
                       <input
-                        className="px-1 font-roboto"
+                        className="px-1 font-roboto w-full"
                         name="email"
                         type="email"
                         placeholder="123@x.com"
@@ -133,10 +132,10 @@ const LoginPage = () => {
                     </label>
                     <div className="text-black">
                       <input
-                        className="px-1"
+                        className="px-1 w-full"
                         name="password"
                         type="password"
-                        placeholder=" ******* "
+                        placeholder="*******"
                         onChange={passwordHandler}
                       />
                     </div>
@@ -144,7 +143,7 @@ const LoginPage = () => {
                 </div>
               </div>
               <br />
-              <div className="btnbtnc ">
+              <div className="btnbtnc flex justify-center">
                 <button
                   className="btnbtn font-roboto bg-white px-2 py-1 shadow-2xl rounded-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-200"
                   type="submit"
@@ -158,6 +157,7 @@ const LoginPage = () => {
       </div>
     </div>
   );
+  
 };
 
 export default LoginPage;

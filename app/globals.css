@@ -34,11 +34,3 @@ a{
   background-color: var(--bg);
   color: var(--textColor);
 }
-
-.wrapper{
-  max-width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 80px;
-  padding-right: 80px;
-}

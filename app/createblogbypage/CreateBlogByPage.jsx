@@ -235,6 +235,123 @@ const CreateBlogByPage = () => {
     }
   };
 
+  // return (
+  //   <div className="">
+  //     <div className="h-1 bg-slate-800 mb-3"></div>
+  //     <div className="font-bold text-5xl pt-8 pb-2 font-monte">
+  //       Create Post.
+  //     </div>
+  //     <form
+  //       className="border-4 min-h-64 py-4 px-3 flex flex-row gap-3"
+  //       onSubmit={(e) => e.preventDefault()} // Prevent default form submission
+  //     >
+  //       <div className="imgbox border-4 w-3/12 flex justify-center items-center max-h-52">
+  //         {imageFile ? (
+  //           <div className="flex flex-col items-center">
+  //             <span className="text-2xl text-gray-400 font-bold font-roboto">
+  //               Image Added
+  //             </span>
+  //           </div>
+  //         ) : (
+  //           <label
+  //             htmlFor="file-upload"
+  //             className="custom-file-upload flex flex-col cursor-pointer"
+  //           >
+  //             <span className="text-8xl text-gray-400 flex justify-center font-roboto">
+  //               +
+  //             </span>
+  //             <span className="text-xl text-gray-400 font-bold font-roboto">
+  //               Add Image
+  //             </span>
+  //           </label>
+  //         )}
+  //         <input
+  //           id="file-upload"
+  //           type="file"
+  //           style={{ display: "none" }}
+  //           onChange={handleFileChange}
+  //         />
+  //       </div>
+  //       <div className="w-9/12 flex flex-col">
+  //         <div className="flex gap-4">
+  //           <input
+  //             type="text"
+  //             className="text-3xl border-4 font-bold h-16 py-1 w-2/6 px-3 font-roboto"
+  //             placeholder="Add Title"
+  //             value={title}
+  //             onChange={(e) => setTitle(e.target.value)}
+  //           />
+  //           <input
+  //             type="text"
+  //             className="text-lg border-4 font-bold h-16 py-1 w-4/6 px-3 font-roboto"
+  //             placeholder="Add Description"
+  //             value={desc}
+  //             onChange={(e) => setDesc(e.target.value)}
+  //           />
+  //         </div>
+
+  //         <textarea
+  //           className="border-4 font-bold min-h-32 mt-2 p-1 px-3 flex font-roboto"
+  //           placeholder="Write content"
+  //           value={content}
+  //           onChange={(e) => setContent(e.target.value)}
+  //         ></textarea>
+  //         {!postedOn ? (
+  //           <input
+  //             type="text"
+  //             className="text-xl border-4 font-bold h-10 py-1 w-40 px-3 mt-2 font-roboto"
+  //             placeholder="Post On"
+  //           />
+  //         ) : (
+  //           <div className="text-xl border-4 h-10 py-1 w-fit px-3 mt-2 font-roboto">
+  //             {postedOn}
+  //           </div>
+  //         )}
+
+  //         <div className="flex justify-between">
+  //           <div className="flex gap-3 text-white pt-9">
+  //             <button
+  //               type="button"
+  //               className="bg-purple1 py-1 px-2 font-roboto"
+  //               onClick={handlePostAnonymously}
+  //             >
+  //               Post Anonymously
+  //             </button>
+  //             <button
+  //               type="button"
+  //               className="bg-purple1 py-1 px-2 font-roboto"
+  //               onClick={handlePostUser}
+  //             >
+  //               Post As User
+  //             </button>
+  //           </div>
+  //           <div className="text-white pt-9 flex gap-5">
+  //             {showCategoryInput && (
+  //               <>
+  //                 <input
+  //                   type="text"
+  //                   placeholder="Category"
+  //                   className="border-2 border-gray-500 px-2 text-black font-roboto"
+  //                   value={categoryInput}
+  //                   onChange={handleCategoryInputChange}
+  //                   onKeyDown={handleCategoryInputKeyPress}
+  //                 />
+  //               </>
+  //             )}
+  //             <button
+  //               type="button"
+  //               className="bg-purple1 color-white py-1 px-2 font-roboto"
+  //               onClick={toggleCategoryInput}
+  //               title={categories.length > 0 ? categories.join(", ") : ""}
+  //             >
+  //               +Add Categories
+  //             </button>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </form>
+  //   </div>
+  // );
   return (
     <div className="">
       <div className="h-1 bg-slate-800 mb-3"></div>
@@ -242,10 +359,10 @@ const CreateBlogByPage = () => {
         Create Post.
       </div>
       <form
-        className="border-4 min-h-64 py-4 px-3 flex flex-row gap-3"
+        className="border-4 min-h-64 py-4 px-3 flex flex-col md:flex-row gap-3"
         onSubmit={(e) => e.preventDefault()} // Prevent default form submission
       >
-        <div className="imgbox border-4 w-3/12 flex justify-center items-center max-h-52">
+        <div className="imgbox border-4 w-full md:w-3/12 flex justify-center items-center max-h-52">
           {imageFile ? (
             <div className="flex flex-col items-center">
               <span className="text-2xl text-gray-400 font-bold font-roboto">
@@ -272,24 +389,24 @@ const CreateBlogByPage = () => {
             onChange={handleFileChange}
           />
         </div>
-        <div className="w-9/12 flex flex-col">
-          <div className="flex gap-4">
+        <div className="w-full md:w-9/12 flex flex-col">
+          <div className="flex flex-col md:flex-row gap-4">
             <input
               type="text"
-              className="text-3xl border-4 font-bold h-16 py-1 w-2/6 px-3 font-roboto"
+              className="text-3xl border-4 font-bold h-16 py-1 w-full md:w-2/6 px-3 font-roboto"
               placeholder="Add Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
             <input
               type="text"
-              className="text-lg border-4 font-bold h-16 py-1 w-4/6 px-3 font-roboto"
+              className="text-lg border-4 font-bold h-16 py-1 w-full md:w-4/6 px-3 font-roboto"
               placeholder="Add Description"
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
             />
           </div>
-
+  
           <textarea
             className="border-4 font-bold min-h-32 mt-2 p-1 px-3 flex font-roboto"
             placeholder="Write content"
@@ -307,9 +424,9 @@ const CreateBlogByPage = () => {
               {postedOn}
             </div>
           )}
-
-          <div className="flex justify-between">
-            <div className="flex gap-3 text-white pt-9">
+  
+          <div className="flex flex-col md:flex-row justify-between mt-4">
+            <div className="flex gap-3 text-white pt-2 md:pt-9">
               <button
                 type="button"
                 className="bg-purple1 py-1 px-2 font-roboto"
@@ -325,7 +442,7 @@ const CreateBlogByPage = () => {
                 Post As User
               </button>
             </div>
-            <div className="text-white pt-9 flex gap-5">
+            <div className="text-white pt-2 md:pt-9 flex gap-5">
               {showCategoryInput && (
                 <>
                   <input
@@ -352,6 +469,7 @@ const CreateBlogByPage = () => {
       </form>
     </div>
   );
+  
 };
 
 export default CreateBlogByPage;

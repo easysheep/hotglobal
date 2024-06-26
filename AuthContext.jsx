@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             ([key, value]) => ({ key, ...value })
           );
           setallposts(resultposts);
-          console.log(resultposts);
+          // console.log(resultposts);
         } else {
           console.log("No data available");
         }
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
             ([key, value]) => ({ key, ...value })
           );
           setpages(resultpages);
-          console.log(resultpages);
+
         } else {
           console.log("No data available");
         }
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
 
     fetchData();
     fetchData1();
-  }, []);
+  }, [allposts]);
 
   return (
     <AuthContext.Provider

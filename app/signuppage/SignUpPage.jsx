@@ -71,28 +71,28 @@ const SignUpPage = () => {
   }, [error]);
 
   return (
-    <div className="flex items-center justify-center top-24 relative w-100 h-full bg-purple1  ">
-      <div className="  px-4 py-4 rounded-xl w-11/12 h-72 flex">
-        <div className="left-panel  w-1/2 flex justify-center items-center">
-          <div className="text-white font-bold  text-8xl flex justify-center">
+    <div className="flex items-center justify-center top-24 relative w-full h-full bg-purple1">
+      <div className="px-4 py-4 rounded-xl w-11/12 h-auto flex flex-col md:flex-row">
+        <div className="left-panel w-full md:w-1/2 flex justify-center items-center">
+          <div className="text-white font-bold text-8xl flex justify-center">
             SignUp.
           </div>
         </div>
-        <div className="overlay-box w-1/2">
-          <div className="pays10 ">
+        <div className="overlay-box w-full md:w-1/2">
+          <div className="pays10">
             <form onSubmit={submitHandler}>
               <br />
-
+  
               <div className="at0">
-                <div className=" pb-3">
+                <div className="pb-3">
                   <div className="font-roboto">
-                    <label className="font-bold text-white font-roboto" for="amountInput">
+                    <label className="font-bold text-white font-roboto" htmlFor="amountInput">
                       Email:
                     </label>
                     <div className="text-black">
                       <input
-                        className="px-1  "
-                        name="cardNumber"
+                        className="px-1 w-full"
+                        name="email"
                         type="email"
                         placeholder="123@x.com"
                         onChange={emailHandler}
@@ -100,25 +100,25 @@ const SignUpPage = () => {
                     </div>
                   </div>
                 </div>
-
+  
                 <div className="pb-3">
                   <div className="text-white font-roboto">
-                    <label className="font-bold font-roboto" for="amountInput">
+                    <label className="font-bold font-roboto" htmlFor="amountInput">
                       Enter Password:
                     </label>
                     <div className="text-black">
                       <input
-                        className="px-1"
-                        name="pin"
+                        className="px-1 w-full"
+                        name="password"
                         type="password"
-                        placeholder=" ******* "
+                        placeholder="*******"
                         onChange={passwordHandler}
                       />
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="">
+              <div className="flex justify-center">
                 <button className="mt-4 font-roboto bg-white px-2 py-1 shadow-2xl rounded-lg transition-transform duration-300 hover:scale-105 hover:bg-gray-200">
                   SignUp
                 </button>
@@ -129,6 +129,7 @@ const SignUpPage = () => {
       </div>
     </div>
   );
+  
 };
 
 export default SignUpPage;

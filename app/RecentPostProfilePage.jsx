@@ -1,7 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { FaArrowAltCircleUp } from "react-icons/fa";
-import { FaArrowAltCircleDown } from "react-icons/fa";
 import Link from "next/link";
 const RecentPostProfilePage = ({ title, desc, time, postedOn, upvotes, downvotes,postedBy,imageUrl,content,uID }) => {
   return (

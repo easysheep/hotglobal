@@ -8,7 +8,7 @@ const page = () => {
     <div>
       <Featured></Featured>
       <Browse></Browse>
-      <Footer></Footer>
+    
     </div>
   );
 };
