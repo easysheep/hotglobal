@@ -5,14 +5,18 @@ import { getApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBmpBBBX7L-9IF_odYwj_8HUnNxFN0aftI",
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: "xploroscope.firebaseapp.com",
   projectId: "xploroscope",
   storageBucket: "xploroscope.appspot.com",
   messagingSenderId: "1388675569",
-  appId: "1:1388675569:web:9009e4b57391515e584450",
+  appId: process.env.NEXT_PUBLIC_APP_ID,
   measurementId: "G-ZGR7L42R72"
+
 };
+
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
